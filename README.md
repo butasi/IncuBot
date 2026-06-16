@@ -1,73 +1,160 @@
-# 🥚 IncuBot
+🥚 IncuBot
 
-**IncuBot** is an ESP32-based smart egg incubator system with automated environmental control, monitoring, and remote access.
+An open-source ESP32-based smart egg incubator featuring automated environmental control, real-time monitoring, remote management, and telemetry integration.
 
----
-
-## 📌 Overview
-
-IncuBot manages egg incubation conditions by automatically controlling temperature, humidity, ventilation, and egg rotation. It also provides real-time monitoring through a web interface.
-
-Built for reliability, modularity, and expandability in DIY and research incubation systems.
+Designed for hobbyists, makers, researchers, and small-scale poultry operations, IncuBot provides precise control of incubation conditions while offering local and cloud-based monitoring capabilities.
 
 ---
 
-## ⚙️ Features
+✨ Features
 
-- 🌡️ Automatic temperature control (heater regulation)
-- 💧 Humidity monitoring and control support
-- 🌀 Fan control for air circulation
-- 🥚 Automated egg turning system (stepper motor)
-- 📊 Real-time sensor monitoring (DHT22 or similar)
-- 🌐 ESP32 web dashboard for remote access
-- 🔌 Manual override for all actuators
-- 📡 Expandable IoT-ready architecture
+Environmental Control
 
----
+- Automatic temperature regulation
+- Humidity monitoring and control
+- Fan-assisted air circulation
+- Configurable hysteresis control logic
+- Over-temperature protection
 
-## 🧠 Hardware
+Egg Management
 
-- ESP32 microcontroller
-- DHT22 temperature & humidity sensor
-- Relay module (heater control)
-- TB6612FNG / motor driver (fan control)
-- Stepper motor (egg turning)
-- I2C LCD/OLED display (optional)
+- Automated egg turning system
+- Configurable turning intervals
+- Manual turn override
+- Support for chicken, guinea fowl, duck, and other poultry eggs
 
----
+Monitoring & Connectivity
 
-## 📡 Web Interface
+- Built-in ESP32 web dashboard
+- MQTT telemetry publishing
+- InfluxDB data logging
+- Grafana visualization dashboards
+- Telegram bot integration
+- Real-time status monitoring
+- Wi-Fi connectivity
 
-- Live temperature & humidity
-- Heater / fan status
-- Egg turning control
-- System state monitoring
-- Manual override toggles
+Manual Control
 
----
+- Heater override
+- Fan override
+- Humidifier override
+- Egg turner override
 
-## 🛠️ Firmware
+User Interface
 
-Written in Arduino C++ for ESP32 with a modular architecture:
-
-- Sensors module
-- Actuators module
-- Control logic
-- Networking layer
-- Web server interface
+- I2C LCD display support
+- Status LED indicators
+- Local system status display
 
 ---
 
-## 🚀 Future Improvements
+🧠 Hardware
 
-- MQTT / cloud integration
-- Data logging (SD / server)
-- Mobile dashboard
-- AI-based incubation optimization
-- Power failure recovery system
+- ESP32 Development Board
+- DHT22 Temperature & Humidity Sensor
+- Relay Module (Heater Control)
+- TB6612FNG Motor Driver
+- DC Fan
+- Stepper Motor (Egg Turner)
+- I2C LCD Display
+- Heating Element
 
 ---
 
-## 📜 License
+📊 System Architecture
+
+ESP32
+ ├── DHT22 Sensor
+ ├── Heater Control
+ ├── Fan Control
+ ├── Humidifier Control
+ ├── Stepper Egg Turner
+ ├── LCD Interface
+ ├── Web Dashboard
+ ├── MQTT Client
+ ├── Telegram Bot
+ └── InfluxDB Telemetry
+
+MQTT → InfluxDB → Grafana
+
+---
+
+📡 Telemetry
+
+Sensor readings and actuator states are published via MQTT and stored in InfluxDB for historical analysis and visualization through Grafana dashboards.
+
+Tracked metrics include:
+
+- Temperature
+- Humidity
+- Heater State
+- Fan State
+- Humidifier State
+- Egg Turner Events
+- Wi-Fi Status
+- System Uptime
+
+---
+
+📱 Telegram Integration
+
+Supported commands include:
+
+- "/status"
+- "/temp"
+- "/hum"
+- "/heater_on"
+- "/heater_off"
+- "/hum_on"
+- "/hum_off"
+- "/fan_on"
+- "/fan_off"
+
+---
+
+🚀 Firmware
+
+Built using:
+
+- Arduino Framework
+- PlatformIO
+- ESPAsyncWebServer
+- PubSubClient
+- UniversalTelegramBot
+
+---
+
+📦 Releases
+
+Prebuilt firmware binaries are available under GitHub Releases.
+
+Files included:
+
+- "bootloader.bin"
+- "partitions.bin"
+- "firmware.bin"
+
+Flash using:
+
+esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 \
+  write_flash \
+  0x1000 bootloader.bin \
+  0x8000 partitions.bin \
+  0x10000 firmware.bin
+
+---
+
+🛣️ Roadmap
+
+- OTA firmware updates
+- Multiple incubation profiles
+- Hatch countdown timer
+- Historical hatch analytics
+- Multi-incubator management
+- Mobile application
+
+---
+
+📜 License
 
 MIT License
